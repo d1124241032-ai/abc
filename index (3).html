@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SDGs 性別平權 - 學習證書</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: #f5f5f5;
+      font-family: "PingFang TC", "Microsoft JhengHei", serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    /* 證書卡片主體（無圖片背景，採用精緻雙重框線） */
+    .certificate-container {
+      background: #ffffff;
+      width: 100%;
+      max-width: 800px;
+      padding: 45px 50px;
+      border: 12px solid #8e24aa;
+      outline: 4px solid #ffd700;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+      text-align: center;
+      position: relative;
+    }
+
+    /* 角落金屬幾何紋飾 */
+    .corner-decor {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border: 3px solid #ffd700;
+    }
+    .top-left { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+    .top-right { top: 12px; right: 12px; border-left: none; border-bottom: none; }
+    .bottom-left { bottom: 12px; left: 12px; border-right: none; border-top: none; }
+    .bottom-right { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+
+    .badge-icon {
+      font-size: 56px;
+      margin-bottom: 10px;
+    }
+
+    .cert-title {
+      font-size: 34px;
+      font-weight: 900;
+      color: #6a1b9a;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .cert-subtitle {
+      font-size: 20px;
+      font-weight: bold;
+      color: #d81b60;
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+    }
+
+    .user-input-section {
+      margin: 25px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .user-input-section label {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .name-input {
+      font-size: 20px;
+      padding: 8px 16px;
+      border: 2px solid #ab47bc;
+      border-radius: 10px;
+      text-align: center;
+      font-weight: bold;
+      color: #4a148c;
+      outline: none;
+      width: 220px;
+    }
+
+    .name-display {
+      display: none;
+      font-size: 28px;
+      font-weight: 900;
+      color: #4a148c;
+      border-bottom: 3px solid #8e24aa;
+      padding: 0 15px;
+    }
+
+    .cert-text {
+      font-size: 18px;
+      color: #444;
+      line-height: 1.8;
+      margin: 20px 0;
+      text-align: justify;
+      text-justify: inter-ideograph;
+    }
+
+    .cert-footer {
+      margin-top: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-top: 2px dashed #ce93d8;
+      padding-top: 20px;
+    }
+
+    .cert-date {
+      font-size: 15px;
+      color: #666;
+    }
+
+    .cert-seal {
+      font-weight: bold;
+      color: #8e24aa;
+      font-size: 16px;
+    }
+
+    /* 列印與操作按鈕區 */
+    .controls {
+      margin-top: 30px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .btn {
+      padding: 12px 32px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 50px;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      transition: all 0.2s;
+    }
+
+    .btn-print {
+      background: linear-gradient(135deg, #8e24aa 0%, #4a148c 100%);
+      color: white;
+    }
+
+    .btn-print:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(142, 36, 170, 0.4);
+    }
+
+    .btn-home {
+      background: #e0e0e0;
+      color: #333;
+    }
+
+    /* ==========================================
+       列印模式專用 CSS (@media print)
+       ========================================== */
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+      .controls, .user-input-section label, .name-input {
+        display: none !important;
+      }
+      .name-display {
+        display: inline-block !important;
+      }
+      .certificate-container {
+        box-shadow: none;
+        max-width: 100%;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 證書主體卡片 -->
+  <div class="certificate-container">
+    <div class="corner-decor top-left"></div>
+    <div class="corner-decor top-right"></div>
+    <div class="corner-decor bottom-left"></div>
+    <div class="corner-decor bottom-right"></div>
+
+    <div class="badge-icon">🏆</div>
+    <h1 class="cert-title">學習榮譽證書</h1>
+    <div class="cert-subtitle">SDGs 性別平權小達人</div>
+
+    <!-- 姓名填寫與顯示區 -->
+    <div class="user-input-section">
+      <label for="userName">獲獎者姓名：</label>
+      <input type="text" id="userName" class="name-input" placeholder="請輸入您的姓名" value="張丞佑" oninput="updateNameDisplay()">
+      <span class="name-display" id="displayName">張丞佑</span>
+    </div>
+
+    <p class="cert-text">
+      恭喜您順利通關「SDGs 性別平權」全數關卡！在遊戲闖關與情境考驗中，展現了對於消除性別偏見、同工同酬、家務分工與尊重多元價值的卓越理解，特頒此證書以資鼓勵。
+    </p>
+
+    <div class="cert-footer">
+      <div class="cert-date" id="issueDate">發證日期：2026 年 11 月 02 日</div>
+      <div class="cert-seal">SDGs 永續平權推動小組 頒發</div>
+    </div>
+  </div>
+
+  <!-- 按鈕區 -->
+  <div class="controls">
+    <button class="btn btn-home" onclick="window.location.href='index.html'">🏠 返回首頁</button>
+    <button class="btn btn-print" onclick="printCertificate()">🖨️ 下載 / 列印證書</button>
+  </div>
+
+  <script>
+    function updateNameDisplay() {
+      const inputVal = document.getElementById('userName').value.trim();
+      document.getElementById('displayName').innerText = inputVal || '學習者';
+    }
+
+    function printCertificate() {
+      updateNameDisplay();
+      window.print();
+    }
+
+    // 自動帶入今日日期
+    window.addEventListener('load', () => {
+      const today = new Date();
+      const y = today.getFullYear();
+      const m = String(today.getMonth() + 1).padStart(2, '0');
+      const d = String(today.getDate()).padStart(2, '0');
+      document.getElementById('issueDate').innerText = `發證日期：${y} 年 ${m} 月 ${d} 日`;
+      updateNameDisplay();
+    });
+  </script>
+</body>
+</html>
